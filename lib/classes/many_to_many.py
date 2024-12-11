@@ -123,3 +123,31 @@ class Magazine:
     @classmethod
     def top_publisher(cls):
         return max(cls._all_magazines, key=lambda mag: len(mag._articles), default=None)
+
+
+# Create authors
+author1 = Author("Maliik salal")
+author2 = Author("Ashow kamau")
+
+# Create magazines
+mag1 = Magazine("TechMag", "Technology")
+mag2 = Magazine("HealthDigest", "Health")
+
+# Create articles
+article1 = Article(author1, mag1, "The Future of AI")
+article2 = Article(author1, mag1, "The Impact of Quantum Computing")
+article3 = Article(author2, mag2, "Healthy Living in 2024")
+article4 = Article(author1, mag2, "Nutrition Facts 101")
+article5 = Article(author2, mag1, "Robots in Surgery")
+
+# Test methods
+print("Author 1 Articles:", [article.title for article in author1.articles()])
+print("Author 1 Magazines:", [mag.name for mag in author1.magazines()])
+print("Author 1 Topic Areas:", author1.topic_areas())
+
+print("Magazine 1 Articles:", [article.title for article in mag1.articles()])
+print("Magazine 1 Contributors:", [author.name for author in mag1.contributors()])
+print("Magazine 1 Article Titles:", mag1.article_titles())
+print("Magazine 1 Contributing Authors:", [author.name for author in (mag1.contributing_authors() or [])])
+
+print("Top Publisher:", Magazine.top_publisher().name if Magazine.top_publisher() else None)
